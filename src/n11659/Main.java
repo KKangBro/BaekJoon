@@ -14,9 +14,9 @@ public class Main {
 			1 3
 			2 4
 			5 5
-			"""; // output: 12 9 1
+			""";	// output: 12 9 1
 	
-	//https://hongjuzzang.github.io/cs/two_pointers/
+	// https://hongjuzzang.github.io/cs/two_pointers/
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));

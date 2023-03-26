@@ -12,8 +12,7 @@ public class Main {
 	static String src = """
 			4
 			1 100 100 100
-			""";
-//	output	75.0
+			""";	//	output	75.25
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
