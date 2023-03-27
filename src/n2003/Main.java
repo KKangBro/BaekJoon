@@ -1,4 +1,4 @@
-package n11659;
+package n2003;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,13 +10,9 @@ public class Main {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
 	static String src = """
-			5 3
-			5 4 3 2 1
-			1 3
-			2 4
-			5 5
-			""";	// output: 12 9 1
-	
+			10 5
+			1 2 3 4 2 5 3 1 1 2
+			"""; // output: 3
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
@@ -30,10 +26,14 @@ public class Main {
 		for (int i = 0; i < n; i++) {
 			numArr[i] = Integer.parseInt(st.nextToken());
 		}
-		
+
 		Arrays.sort(numArr);
 		System.out.println(Arrays.toString(numArr));
 		
+		int left = 0;
+		int right = 0;
+		while(left <= m) {
+			
+		}
 	}
-
 }
