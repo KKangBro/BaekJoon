@@ -1,54 +1,43 @@
-package n2003;
+package n2018;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
+import java.util.stream.IntStream;
 
 public class Main {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 //	static StringBuilder output = new StringBuilder();
 	static String src = """
-			10 5
-			1 2 3 4 2 5 3 1 1 2
-			"""; // output: 3
+			15
+			"""; // output: 4
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
 
 		StringTokenizer st = new StringTokenizer(input.readLine());
-		int n = Integer.parseInt(st.nextToken());
-		int m = Integer.parseInt(st.nextToken());
-
-		int[] numArr = new int[n];
-		st = new StringTokenizer(input.readLine());
-		for (int i = 0; i < n; i++) {
-			numArr[i] = Integer.parseInt(st.nextToken());
-		}
-
-//		System.out.println(Arrays.toString(numArr));
-
-		int l = 0;
-		int r = 0;
-		long sum = 0;
-		long rst = 0;
-
-		while (l < n) {
-			if (sum == m) {
+		int num = Integer.parseInt(st.nextToken());
+		int[] arr = IntStream.range(1, num + 1).toArray();	// 1 ~ 15
+		System.out.println(Arrays.toString(arr));
+		
+		int left = 0, right = 0, sum = 0, rst = 0;
+		while (left < num) {
+			if (sum == num)
 				rst++;
-			}
 
-			if (sum > m || r == n) {
-				sum -= numArr[l];
-				l++;
+			if (sum > num || right == num) {
+				sum -= arr[left];
+				left++;
 			} else {
-				sum += numArr[r];
-				r++;
+				sum += arr[right];
+				right++;
 			}
-		}
 
+		}
 		System.out.println(rst);
 
 	}
+
 }
