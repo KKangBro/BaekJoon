@@ -1,4 +1,4 @@
-package n2018;
+package n2018; // 수들의 합 5
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,14 +20,15 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(input.readLine());
 		int num = Integer.parseInt(st.nextToken());
 		int[] arr = IntStream.range(1, num + 1).toArray();	// 1 ~ 15
-		System.out.println(Arrays.toString(arr));
+		
+//		System.out.println(Arrays.toString(arr));
 		
 		int left = 0, right = 0, sum = 0, rst = 0;
 		while (left < num) {
 			if (sum == num)
 				rst++;
 
-			if (sum > num || right == num) {
+			if (sum >= num || right == num) {
 				sum -= arr[left];
 				left++;
 			} else {
