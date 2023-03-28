@@ -3,10 +3,11 @@ package n1940; // 주몽
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main3 {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 //	static StringBuilder output = new StringBuilder();
 	static String src = """
@@ -22,30 +23,26 @@ public class Main {
 		st = new StringTokenizer(input.readLine());
 		int m = Integer.parseInt(st.nextToken());
 
-		int[] arr = new int[n];
+		List<Integer> list = new ArrayList<>();
 		st = new StringTokenizer(input.readLine());
-		for (int i = 0; i < arr.length; i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
+		for (int i = 0; i < n; i++) {
+			list.add(Integer.parseInt(st.nextToken()));
 		}
 
-		System.out.println(Arrays.toString(arr));
+		int rst = 0;
+		while (list.size() > 1) {
+			System.out.println(list);
+			int num = list.get(0);
+			int target = m - num;
 
-		int left = 0, right = 1, sum = 0, rst = 0;
-		while (left < n - 1) {
-			System.out.println(left + ", " + right);
-
-			if (right == n) {
-				right = ++left;
-			} else {
-				if (arr[left] + arr[right] == m) {
-					rst++;
-					right = ++left;
-				}
-
-				right++;
+			if (list.contains(target)) {
+				System.out.println(num + ", " + target + "  matched!");
+				rst++;
+				list.remove(Integer.valueOf(target));
 			}
-
+			list.remove(Integer.valueOf(num));
 		}
+		
 		System.out.println(rst);
 	}
 

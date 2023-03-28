@@ -3,7 +3,6 @@ package n2018; // 수들의 합 5
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.util.stream.IntStream;
 

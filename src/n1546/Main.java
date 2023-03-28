@@ -21,7 +21,7 @@ public class Main {
 		StringTokenizer st = new StringTokenizer(input.readLine());
 		double[] arr = new double[n];
 		for (int i = 0; i < n; i++) {
-			arr[i] = Integer.parseInt(st.nextToken());
+			arr[i] = Double.parseDouble(st.nextToken());
 		}
 
 		double max = Arrays.stream(arr).max().getAsDouble();
