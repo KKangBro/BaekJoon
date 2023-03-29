@@ -3,17 +3,16 @@ package n1940; // 주몽
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main3 {
+public class Main4 {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 //	static StringBuilder output = new StringBuilder();
 	static String src = """
+			6
 			9
-			10
-			1 2 3 4 5 6 7 8 9
+			2 7 4 1 5 3
 			"""; // output: 2
 
 	public static void main(String[] args) throws Exception {
@@ -23,26 +22,34 @@ public class Main3 {
 		st = new StringTokenizer(input.readLine());
 		int m = Integer.parseInt(st.nextToken());
 
-		List<Integer> list = new ArrayList<>();
+		int[] arr = new int[n];
 		st = new StringTokenizer(input.readLine());
 		for (int i = 0; i < n; i++) {
-			list.add(Integer.parseInt(st.nextToken()));
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
 
-		int rst = 0;
-		while (list.size() > 1) {
-			System.out.println(list);
-			int num = list.get(0);
-			int target = m - num;
+		Arrays.sort(arr);
+		System.out.println(Arrays.toString(arr));
 
-			if (list.contains(target)) {
-				System.out.println(num + ", " + target + "  matched!");
+		int left = 0, right = n - 1, rst = 0;
+		while (left < right) {
+			int sum = arr[left] + arr[right];
+
+			if (sum == m) {
+				System.out.println(arr[left] + ", " + arr[right]);
 				rst++;
-				list.remove(Integer.valueOf(target));
+				right = n - 1;
+				left++;
 			}
-			list.remove(Integer.valueOf(num));
+
+			if (sum > m) {
+				right--;
+			} else {
+				left++;
+			}
+
 		}
-		
+
 		System.out.println(rst);
 	}
 
