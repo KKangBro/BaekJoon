@@ -17,37 +17,36 @@ public class Main4 {
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
-		StringTokenizer st = new StringTokenizer(input.readLine());
-		int n = Integer.parseInt(st.nextToken());
-		st = new StringTokenizer(input.readLine());
-		int m = Integer.parseInt(st.nextToken());
 
-		int[] arr = new int[n];
-		st = new StringTokenizer(input.readLine());
-		for (int i = 0; i < n; i++) {
+		int N = Integer.parseInt(input.readLine());
+		int M = Integer.parseInt(input.readLine());
+
+		int[] arr = new int[N];
+		StringTokenizer st = new StringTokenizer(input.readLine());
+		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 
 		Arrays.sort(arr);
-		System.out.println(Arrays.toString(arr));
+//		System.out.println(Arrays.toString(arr));
 
-		int left = 0, right = n - 1, rst = 0;
+		int rst = 0;
+		int left = 0;
+		int right = N - 1;
+
 		while (left < right) {
 			int sum = arr[left] + arr[right];
 
-			if (sum == m) {
-				System.out.println(arr[left] + ", " + arr[right]);
-				rst++;
-				right = n - 1;
-				left++;
-			}
-
-			if (sum > m) {
+			if (sum > M) {
 				right--;
-			} else {
+			} else if (sum < M) {
 				left++;
+			} else {
+//				System.out.println(left + ", " + right);
+				rst++;
+				left++;
+				right--;
 			}
-
 		}
 
 		System.out.println(rst);

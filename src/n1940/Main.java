@@ -30,7 +30,7 @@ public class Main {
 
 		System.out.println(Arrays.toString(arr));
 
-		int left = 0, right = 1, sum = 0, rst = 0;
+		int left = 0, right = 1, rst = 0;
 		while (left < n - 1) {
 			System.out.println(left + ", " + right);
 

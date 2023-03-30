@@ -1,12 +1,11 @@
 package n1920; // 수 찾기
+
 //https://minhamina.tistory.com/127
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main2 {
@@ -30,13 +29,12 @@ public class Main2 {
 			arr[i] = Integer.parseInt(st.nextToken());
 		}
 		Arrays.sort(arr);
-		System.out.println(Arrays.toString(arr));
+//		System.out.println(Arrays.toString(arr));
 
 		int M = Integer.parseInt(input.readLine());
 		st = new StringTokenizer(input.readLine());
 		for (int i = 0; i < M; i++) {
-			int target = Integer.parseInt(st.nextToken());
-			if (contain(target, 0, N - 1)) {
+			if (binarySearch(Integer.parseInt(st.nextToken()), 0, N - 1)) {
 				output.append(1 + "\n");
 			} else {
 				output.append(0 + "\n");
@@ -46,19 +44,20 @@ public class Main2 {
 		System.out.println(output);
 	}
 
-	private static boolean contain(int target, int low, int high) {
+	private static boolean binarySearch(int target, int low, int high) {
+		int mid;
 		if (low <= high) {
-			int mid = (low + high) / 2;
+			
+			mid = (low + high) / 2;
+			
 			if (target > arr[mid]) {
-				contain(target, mid + 1, high);
+				return binarySearch(target, mid + 1, high);
 			} else if (target < arr[mid]) {
-				contain(target, low, mid - 1);
+				return binarySearch(target, low, mid - 1);
 			} else {
 				return true;
 			}
 		}
-
 		return false;
 	}
-
 }
