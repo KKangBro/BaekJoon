@@ -8,17 +8,18 @@ import java.util.Queue;
 
 public class Main {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-	static StringBuilder output = new StringBuilder();
+//	static StringBuilder output = new StringBuilder();
 	static String src = """
 			55-50+40
 			"""; // output: -35
+	static Queue<Character> queue;
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
 
 		String str = input.readLine();
 
-		Queue<Character> queue = new LinkedList<>();
+		queue = new LinkedList<>();
 		for (int i = 0; i < str.length(); i++)
 			queue.offer(str.charAt(i));
 		queue.offer('-');
@@ -29,7 +30,7 @@ public class Main {
 		String temp = "";
 		while (!queue.isEmpty()) {
 			char c = queue.poll();
-
+			
 			if (Character.isDigit(c)) {
 				temp += c;
 			} else {
@@ -37,25 +38,31 @@ public class Main {
 				temp = "";
 
 				if (c == '-') {
-					int sub = 0;
-					while (!queue.isEmpty()) {
-						c = queue.peek() == '-' ? queue.peek() : queue.poll();
-
-						if (Character.isDigit(c)) {
-							temp += c;
-						} else {
-							sub += Integer.parseInt(temp);
-							temp = "";
-
-							if (c == '-') {
-								temp = "" + (sub * -1);
-								break;
-							}
-						}
-					}
+					temp = subLogic(temp, c);
 				}
 			}
 		}
 		System.out.println(rst);
+	}
+
+	private static String subLogic(String temp, char c) {
+		int sub = 0;
+		while (!queue.isEmpty()) {
+			c = queue.peek() == '-' ? queue.peek() : queue.poll();
+
+			if (Character.isDigit(c)) {
+				temp += c;
+			} else {
+				sub += Integer.parseInt(temp);
+				temp = "";
+
+				if (c == '-') {
+					temp = "" + (sub * -1);
+					break;
+				}
+			}
+		}
+
+		return temp;
 	}
 }
