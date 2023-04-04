@@ -20,21 +20,21 @@ public class Main {
 
 		int N = Integer.parseInt(input.readLine());
 		int[] A = Arrays.stream(input.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-		System.out.println(Arrays.toString(A));
+//		System.out.println(Arrays.toString(A));
 		
 		StringTokenizer st = new StringTokenizer(input.readLine());
 		int B = Integer.parseInt(st.nextToken());
 		int C = Integer.parseInt(st.nextToken());
 
-		int rst = N;
+		long rst = N;
 		for (int i = 0; i < N; i++) {
 			A[i] -= B;
 			
 			if (A[i] > 0) {
 				if (A[i] % C == 0) {
-					rst = rst + (A[i] / C);
+					rst += A[i] / C;
 				} else {
-					rst = rst + (A[i] / C) + 1;
+					rst += A[i] / C + 1;
 				}
 			}
 		}
