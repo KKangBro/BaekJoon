@@ -1,17 +1,15 @@
-package n1969;
+package n1969; // DNA
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-	static StringBuilder output = new StringBuilder();
+//	static StringBuilder output = new StringBuilder();
 	static String src = """
 			5 8
 			TATGATAC
@@ -20,14 +18,12 @@ public class Main {
 			TGAGATAC
 			TAAGATGT
 			"""; // output : TAAGATAC 7
-	static Map<Character, Integer> map = new HashMap<>() {
-		{
-			put('A', 0);
-			put('C', 1);
-			put('G', 2);
-			put('T', 3);
-		}
-	};
+	static Map<Character, Integer> map = new HashMap<>() {{
+		put('A', 0);
+		put('C', 1);
+		put('G', 2);
+		put('T', 3);
+	}};
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
@@ -41,13 +37,12 @@ public class Main {
 			String str = input.readLine();
 
 			for (int j = 0; j < M; j++) {
-				char c = str.charAt(j);
-				arr[map.get(c)][j]++;
+				arr[map.get(str.charAt(j))][j]++;
 			}
 		}
 
-		// https://url.kr/3bokuc
-		String rstStr = "";
+		String rstDna = "";
+		int rstSum = 0;
 		for (int j = 0; j < M; j++) {
 			int idx = -1, max = -1;
 			for (int i = 0; i < 4; i++) {
@@ -56,22 +51,23 @@ public class Main {
 					idx = i;
 				}
 			}
-			System.out.println(max);
-			System.out.println(idx);
-			System.out.println();
+
+			arr[idx][j] = 0;
+			for (int i = 0; i < 4; i++)
+				rstSum += arr[i][j];
+
+			rstDna += getKey(map, idx);
 		}
-		System.out.println(getKey(map, 0));
 
+		System.out.println(rstDna + "\n" + rstSum);
 	}
 
-	private static char[] getKey(Map<Character, Integer> map2, int i) {
-		for (K key : map.keySet()) {
-            if (value.equals(map.get(key))) {
-                return key;
-            }
-        }
-        return null;
+	private static char getKey(Map<Character, Integer> map2, int num) {
+		for (Character key : map.keySet()) {
+			if (num == map.get(key))
+				return key;
+		}
+		return '\u0000';
 	}
-	
 
 }
