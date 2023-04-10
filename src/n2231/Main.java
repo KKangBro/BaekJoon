@@ -1,41 +1,32 @@
-package n2231;
+package n2231; // 분해합
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.Arrays;
 
 public class Main {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
 	static String src = """
-			6243
+			5
 			"""; // output: 198
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
 
-		String str = input.readLine();
-		int N = Integer.parseInt(str); // N = 101 * x + 11 * y + 2 * z;
-		int[] arr = new int[str.length()];
-		System.out.println(Arrays.toString(arr));
+		int N = Integer.parseInt(input.readLine());
 
-		
-		while (arr[0] < 10) {
-			while (arr[1] < 10) {
-				while (arr[2] < 10) {
-//					System.out.println(x + " " + y + " " + z);
-					int answer = 101 * x + 11 * y + 2 * z;
-//					System.out.println(answer);
-					if (answer == N) {
-						System.out.println(100 * x + 10 * y + 1 * z);
-						return;
-					}
-					arr[2]++;
-				}
-				arr[1]++;
+		for (int i = 1; i <= N; i++) {
+			int sum = i;
+			String str = Integer.toString(i);
+			for (int j = 0; j < str.length(); j++) {
+				sum += str.charAt(j) - '0';
 			}
-			arr[0]++;
+			
+			if(sum == N) {
+				System.out.println(i);
+				return;
+			}
 		}
 		System.out.println(0);
 	}
