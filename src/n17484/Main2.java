@@ -1,15 +1,13 @@
 package n17484; // 진우의 달 여행 (Small)
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main2 {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
 	static String src = """
@@ -21,11 +19,14 @@ public class Main {
 			5 98 1 5
 			4 95 67 58
 			"""; // output: 29
+	
 	static int N, M;
 	static int[][] map;
-	static int[] dir = { -1, 0, 1 };
+	static int min = Integer.MAX_VALUE;
+	static int[] ydir = { -1, 0, 1 };
+	static int[] visited;
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws IOException {
 		input = new BufferedReader(new StringReader(src));
 
 		StringTokenizer st = new StringTokenizer(input.readLine());
@@ -33,34 +34,43 @@ public class Main {
 		M = Integer.parseInt(st.nextToken());
 
 		map = new int[N][M];
-
 		for (int i = 0; i < N; i++) {
 			map[i] = Arrays.stream(input.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
 		}
 
-		int rst = Integer.MAX_VALUE;
-		for (int j = 0; j < M; j++) {
-			rst = Math.min(rst, run(0, j, -1));
+		for (int i = 0; i < M; i++) {
+			visited = new int[N];
+			visited[0] = i;
+			dfs(1, i, -1);
 		}
 
-		System.out.println(rst);
+		System.out.println(min);
 	}
 
-	private static int run(int i, int j, int d) {
-		if (i == N)
-			return 0;
+	public static void dfs(int depth, int y, int dir) {
+		if (depth == N) {
+			int sum = 0;
+			for (int i = 0; i < N; i++) {
+				sum += map[i][visited[i]];
+			}
 
-		int ret = Integer.MAX_VALUE;
-		for (int c = 0; c < 3; c++) {
-			if (c == d)
-				continue;
-			if (j + dir[c] < 0 || j + dir[c] >= M)
-				continue;
-
-			ret = Math.min(ret, run(i + 1, j + dir[c], c)) + map[i][j];
+			min = min > sum ? sum : min;
+			return;
 		}
 
-		return ret;
+		for (int i = 0; i < 3; i++) {
+			int dy = y + ydir[i];
+			if (isValidPosition(dy) && dir != i) {
+				visited[depth] = dy;
+				dfs(depth + 1, dy, i);
+			}
+		}
 	}
 
+	public static boolean isValidPosition(int y) {
+		if (y < 0 || y >= M)
+			return false;
+		
+		return true;
+	}
 }

@@ -1,4 +1,4 @@
-package n1874;
+package n1874; // 스택 수열
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,36 +9,42 @@ public class Main {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
 	static String src = """
-			8
-			4
-			3
-			6
-			8
-			7
 			5
-			2
 			1
+			2
+			5
+			3
+			4
 			""";
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
 
 		int n = Integer.parseInt(input.readLine());
-
-		String str = "";
-		for (int i = 0; i < n; i++) {
-			str += input.readLine();
-		}
-
 		Stack<Integer> stack = new Stack<>();
-		int idx = 0;
-		for (int i = 1; i <= n; i++) {
-			if(i == str.charAt(idx) - '0') {
-				
-				
+		int target;
+		int num = 1;
+
+		for (int i = 0; i < n; i++) {
+			target = Integer.parseInt(input.readLine());
+
+			while (num <= target) {
+				stack.push(num);
+				output.append("+\n");
+				num++;
+			}
+
+			if (stack.peek() == target) {
+				stack.pop();
+				output.append("-\n");
 			}
 		}
-		
+
+		if (stack.empty()) {
+			System.out.println(output);
+		} else {
+			System.out.println("NO");
+		}
 	}
 
 }
