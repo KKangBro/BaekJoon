@@ -18,7 +18,7 @@ public class Main3 {
 
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
-		
+
 		int N = Integer.parseInt(input.readLine());
 		int[] question = new int[N];
 		int[] strike = new int[N];
@@ -31,14 +31,54 @@ public class Main3 {
 			strike[i] = Integer.parseInt(st.nextToken());
 			ball[i] = Integer.parseInt(st.nextToken());
 		}
-		
+
+		int rst = 0;
 		for (int i = 123; i <= 987; i++) {
-			
-			
-			
-			
+			int h = i / 100;
+			int t = i / 10 % 10;
+			int o = i % 10;
+
+			if (h == t || t == o || h == o)
+				continue;
+			if (t == 0 || o == 0)
+				continue;
+
+			int cnt = 0;
+			for (int j = 0; j < N; j++) {
+				int qst = question[j];
+				int sCnt = 0, bCnt = 0;
+
+				if (qst / 100 == h)
+					sCnt++;
+				else if (qst / 100 == t)
+					bCnt++;
+				else if (qst / 100 == o)
+					bCnt++;
+
+				if (qst / 10 % 10 == h)
+					bCnt++;
+				else if (qst / 10 % 10 == t)
+					sCnt++;
+				else if (qst / 10 % 10 == o)
+					bCnt++;
+
+				if (qst % 10 == h)
+					bCnt++;
+				else if (qst % 10 == t)
+					bCnt++;
+				else if (qst % 10 == o)
+					sCnt++;
+				
+				if(sCnt != strike[j] || bCnt != ball[j])
+					break;
+				
+				cnt++;
+				if(cnt == N)
+					rst++;
+			}
 		}
 
+		System.out.println(rst);
 	}
 
 }
