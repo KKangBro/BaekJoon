@@ -14,13 +14,13 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		input = new BufferedReader(new StringReader(src));
 		
-		int N = Integer.parseInt(input.readLine());
-		
-		int rst = 0;
-		
-		// dp, 그리디
-		
-		System.out.println(rst);
+//		int N = Integer.parseInt(input.readLine());
+//		
+//		int rst = 0;
+//		
+//		// dp, 그리디
+//		
+//		System.out.println(rst);
 
 	}
 
