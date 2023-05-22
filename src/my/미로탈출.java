@@ -1,4 +1,4 @@
-package my.dfs; // https://youtu.be/7C9RgOcvkvo
+package my; // https://youtu.be/7C9RgOcvkvo
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
