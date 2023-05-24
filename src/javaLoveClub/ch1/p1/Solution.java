@@ -1,4 +1,4 @@
-package javaCodingTest.ch1.p1;
+package javaLoveClub.ch1.p1;
 
 import java.util.*;
 
