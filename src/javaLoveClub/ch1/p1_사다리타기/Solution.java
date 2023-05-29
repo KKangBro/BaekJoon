@@ -1,4 +1,4 @@
-package javaLoveClub.ch1.p1;
+package javaLoveClub.ch1.p1_사다리타기;
 
 import java.util.*;
 

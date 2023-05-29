@@ -1,4 +1,4 @@
-package javaLoveClub.ch1.p3;
+package javaLoveClub.ch1.p3_잃어버린강아지;
 
 class Solution {
 	static final int SIZE = 10;

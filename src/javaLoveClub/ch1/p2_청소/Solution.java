@@ -1,4 +1,4 @@
-package javaLoveClub.ch1.p2;
+package javaLoveClub.ch1.p2_청소;
 
 import java.util.*;
 
