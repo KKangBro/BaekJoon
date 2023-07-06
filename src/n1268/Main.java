@@ -59,25 +59,25 @@ public class Main {
 		}
 		System.out.println(list.indexOf(Collections.max(list)) + 1);
 		
-		List<int[]> list = new ArrayList<>();
-		for (int i = 0; i < stu; i++) {
-			int sum = 0;
-			for (int j = 0; j < stu; j++)
-				sum += map[i][j];
-
-			list.add(new int[] { i, sum });
-		}
-
-		list.sort((a, b) -> {
-			int rst1 = b[1] - a[1];
-			int rst2 = a[0] - b[0];
-			if (rst1 == 0)
-				return rst2;
-			return rst1;
-		});
-		
-		for (int[] is : list) {
-			System.out.println(is[0] +", "+ is[1]);
-		}
+//		List<int[]> list = new ArrayList<>();
+//		for (int i = 0; i < stu; i++) {
+//			int sum = 0;
+//			for (int j = 0; j < stu; j++)
+//				sum += map[i][j];
+//
+//			list.add(new int[] { i, sum });
+//		}
+//
+//		list.sort((a, b) -> {
+//			int rst1 = b[1] - a[1];
+//			int rst2 = a[0] - b[0];
+//			if (rst1 == 0)
+//				return rst2;
+//			return rst1;
+//		});
+//		
+//		for (int[] is : list) {
+//			System.out.println(is[0] +", "+ is[1]);
+//		}
 	}
 }
