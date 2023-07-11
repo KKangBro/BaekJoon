@@ -1,4 +1,4 @@
-package n23814;
+package n23814; // 아 저는 볶음밥이요
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,8 +10,8 @@ public class Main {
 	static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder output = new StringBuilder();
 	static String src = """
-			3
-			1 1 10
+			4
+			3 3 2
 			"""; // output: 9
 	static long D;
 	static long maxMandu;
@@ -36,6 +36,8 @@ public class Main {
 		// case 2: K에서 가져와서 N을 D의 배수로 만들기
 		// case 3: K에서 가져와서 M을 D의 배수로 만들기
 		for (int t = 0; t < 2; t++) {
+			if (menu[t] == 0)
+				continue;
 			Long[] copy = Arrays.copyOf(menu, 3);
 			long move = D - (copy[t] % D);
 			copy[t] += move;
@@ -47,18 +49,20 @@ public class Main {
 		// case 4: K에서 가져와서 N과 M을 D의 배수로 만들기
 		Long[] copy = Arrays.copyOf(menu, 3);
 		for (int t = 0; t < 2; t++) {
+			if (menu[t] == 0)
+				continue;
 			long move = D - (copy[t] % D);
 			copy[t] += move;
 			copy[2] -= move;
 		}
 
 		answer = answer > go(copy) ? answer : go(copy);
-		
+
 		System.out.println(answer);
 	}
 
 	private static Long go(Long[] arr) {
-		int answer = 0;
+		long answer = 0;
 		for (int i = 0; i < 3; i++)
 			answer += arr[i] / D;
 
